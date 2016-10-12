@@ -1,11 +1,10 @@
-#include "mainwindow.h"
 #include <QApplication>
-
+#include "logon.h"
 int main(int argc, char *argv[])
 {
     QApplication a(argc, argv);
-    MainWindow w;
-    w.show();
-
+    Logon *logon = new Logon();
+    logon->setWindowFlags(Qt::FramelessWindowHint);
+    logon->show();
     return a.exec();
 }

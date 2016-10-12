@@ -12,9 +12,19 @@ TARGET = Course-Paper
 TEMPLATE = app
 
 
-SOURCES += main.cpp\
-        mainwindow.cpp
+SOURCES += main.cpp \
+    logon.cpp \
+    sha256/sha256.cpp \
+    db/dbread.cpp \
+    algorithm/User.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += \
+    logon.h \
+    sha256/sha256.h
 
-FORMS    += mainwindow.ui
+FORMS    += \
+    logon.ui
+
+DISTFILES += \
+    sha256/LICENSE.txt \
+    img/user.png

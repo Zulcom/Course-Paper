@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>Logon</class>
+ <widget class="QDialog" name="Logon">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>400</height>
+   </rect>
+  </property>
+  <property name="contextMenuPolicy">
+   <enum>Qt::NoContextMenu</enum>
+  </property>
+  <property name="windowTitle">
+   <string>Окно авторизации</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">background-color:#eee;</string>
+  </property>
+  <widget class="QPushButton" name="exitButton">
+   <property name="geometry">
+    <rect>
+     <x>360</x>
+     <y>10</y>
+     <width>31</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">border:none;
+color:red;
+font-weight:bolder;
+font-size: 20px;</string>
+   </property>
+   <property name="text">
+    <string>X</string>
+   </property>
+  </widget>
+  <widget class="QWidget" name="">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>40</y>
+     <width>329</width>
+     <height>333</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <item>
+     <widget class="QLabel" name="logonImg">
+      <property name="cursor">
+       <cursorShape>ArrowCursor</cursorShape>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap>img/user.png</pixmap>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <spacer name="horizontalSpacer">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>68</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="welcomeText">
+        <property name="styleSheet">
+         <string notr="true">font-size:25px;
+	color:#676767;
+	font-family: 'Open Sans', sans-serif;
+	font-weight:400;</string>
+        </property>
+        <property name="text">
+         <string>Авторизация</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_2">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>58</width>
+          <height>20</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="username">
+      <property name="styleSheet">
+       <string notr="true">text-align:left;
+	background:#D3D3D3;;
+	font-family: 'Open Sans', sans-serif;
+	color: #676767;
+	font-weight:600;
+	font-size: 16px;
+	border-radius: 5px;
+	border:1px solid #DED6D6;
+	width:0%;
+	margin-top:10px;</string>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Normal</enum>
+      </property>
+      <property name="placeholderText">
+       <string> Логин</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QLineEdit" name="password">
+      <property name="styleSheet">
+       <string notr="true">text-align:left;
+	background:#D3D3D3;;
+	font-family: 'Open Sans', sans-serif;
+	color: #676767;
+	font-weight:600;
+	font-size: 16px;
+	border-radius: 5px;
+	border:1px solid #DED6D6;
+	width:0%;
+	padding-left:2px;
+	margin-top:10px;</string>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Password</enum>
+      </property>
+      <property name="placeholderText">
+       <string>Пароль</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="loginButton">
+      <property name="cursor">
+       <cursorShape>PointingHandCursor</cursorShape>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background:#128A42;
+	color:#fff;
+width: 99%;
+	padding: 3%;
+	background: #21A957;
+	font-family: 'Arial', sans-serif;
+	color: #ECECEC;
+	font-size: 20px;
+	font-weight:500;
+	border-radius: 5px;
+	margin-top:10px;</string>
+      </property>
+      <property name="text">
+       <string>Войти</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <spacer name="horizontalSpacer_3">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>88</width>
+          <height>13</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+      <item>
+       <widget class="QLabel" name="forgotpassword">
+        <property name="styleSheet">
+         <string notr="true">font-family: 'Open Sans', sans-serif;
+	color: #676767;
+	font-weight:600;
+	font-size: 16px;
+margin-top:10px;</string>
+        </property>
+        <property name="text">
+         <string>Забыли пароль?</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <spacer name="horizontalSpacer_4">
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+        <property name="sizeHint" stdset="0">
+         <size>
+          <width>78</width>
+          <height>17</height>
+         </size>
+        </property>
+       </spacer>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <zorder>password</zorder>
+  <zorder>username</zorder>
+  <zorder>welcomeText</zorder>
+  <zorder>horizontalSpacer</zorder>
+  <zorder>horizontalSpacer_2</zorder>
+  <zorder>password</zorder>
+  <zorder>logonImg</zorder>
+  <zorder>loginButton</zorder>
+  <zorder>forgotpassword</zorder>
+  <zorder>horizontalSpacer_3</zorder>
+  <zorder>horizontalSpacer_4</zorder>
+  <zorder>exitButton</zorder>
+ </widget>
+ <tabstops>
+  <tabstop>username</tabstop>
+  <tabstop>password</tabstop>
+  <tabstop>loginButton</tabstop>
+  <tabstop>exitButton</tabstop>
+ </tabstops>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>loginButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Logon</receiver>
+   <slot>open()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>140</x>
+     <y>293</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>80</x>
+     <y>366</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>exitButton</sender>
+   <signal>clicked()</signal>
+   <receiver>Logon</receiver>
+   <slot>reject()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>374</x>
+     <y>22</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>372</x>
+     <y>67</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>
