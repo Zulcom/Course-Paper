@@ -15,12 +15,13 @@ TEMPLATE = app
 SOURCES += main.cpp \
     logon.cpp \
     sha256/sha256.cpp \
-    db/dbread.cpp \
-    algorithm/User.cpp
+    algorithm/User.cpp \
+    algorithm/algorithm.cpp
 
 HEADERS  += \
     logon.h \
-    sha256/sha256.h
+    sha256/sha256.h \
+    db/db.h
 
 FORMS    += \
     logon.ui

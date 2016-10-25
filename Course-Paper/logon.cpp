@@ -16,6 +16,7 @@ Logon::~Logon()
 }
 
 void Logon::on_loginButton_clicked() // слот нажатия на кнопку логина
-{
-
+{11
+  if(! User::auth(login,pass))
+      emit close();
 }
