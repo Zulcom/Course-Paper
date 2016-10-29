@@ -1,6 +1,6 @@
 #include "logon.h"
 #include "ui_logon.h"
-#include "algorithm/User.h"
+#include "algorithm/User.cpp"
 Logon::Logon(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Logon){
@@ -16,8 +16,7 @@ Logon::~Logon()
 }
 
 void Logon::on_loginButton_clicked() // слот нажатия на кнопку логина
-{
-  if(! User::auth(ui->username->text().toStdString(),ui->password->text().toStdString())
-          )
+{11
+  if(! User::auth(login,pass))
       emit close();
 }

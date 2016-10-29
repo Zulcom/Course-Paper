@@ -3,7 +3,7 @@
 
 #include <string>
 #include <vector>
-#include <algorithm/User.h>
+#include <algorithm/User.cpp>
 #include <algorithm/algorithm.cpp>
 #include <fstream>
 
@@ -18,7 +18,7 @@ private:
      */
     std::string type;
     std::string name;
-    std::string getPath(){
+    getPath(){
         if(type == "User")
             return "user.txt";
         else
@@ -31,8 +31,8 @@ public:
         this->name=name;
     }
     std::vector<User> readUsersDb(){
-             std::ifstream input(this->getPath());
-            std::string tempReader;
+             ifstream input(this.getPath);
+            string tempReader;
             std::vector<User> toReturn;
             while (input >> tempReader) {
              std::vector<std::string> splitted = split(input,' ');
