@@ -16,12 +16,14 @@ SOURCES += main.cpp \
     logon.cpp \
     sha256/sha256.cpp \
     algorithm/User.cpp \
-    algorithm/algorithm.cpp
+    algorithm/algorithm.cpp \
+    db/db.cpp
 
 HEADERS  += \
     logon.h \
     sha256/sha256.h \
-    db/db.h
+    db/db.h \
+    algorithm/user.h
 
 FORMS    += \
     logon.ui

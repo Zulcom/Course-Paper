@@ -1,22 +1,8 @@
 #include <string>
+#include <algorithm/User.h>
 #include <db/db.h>
-class User{
-private:
-    std::string login;
-    std::string password;
-    /**
-     * @brief status Status of user.
-     * 0 is Administrator
-     * 1 is Librian
-     * 2 is Reader
-     */
-    int status;
-public:
-    int auth(std::string login,std::string pass);
-    User(std::string login, std::string password);
-    int getStatus();
-    void setStatus(int status);
-};
+#include <vector>
+#include <algorithm>
 int User::getStatus(){
     return this->status;
 }
@@ -29,12 +15,11 @@ User::User(std::string login,std::string password){
     this->password=password;
 }
 int User::auth(std::string login, std::string pass){
-    DataBase usersdb = new DataBase("User","Users");
-    std::vector<User> users = usersdb.readUsersDb();
+    DataBase * usersdb = new DataBase("User","Users");
+    std::vector<User> users = usersdb->readUsersDb();
     std::vector<User>::iterator it =
             std::find_if(users.begin(), users.end(),
-                         [password](User const &n){ return (n.login == login && n.password == pass;}
-            );
+    [login,pass](User const &n){ return n.login == login && n.password == pass;});
     if(it != users.end() )
         return 1;
     else

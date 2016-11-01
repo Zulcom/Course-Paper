@@ -3,10 +3,7 @@
 
 #include <string>
 #include <vector>
-#include <algorithm/User.cpp>
-#include <algorithm/algorithm.cpp>
-#include <fstream>
-
+#include<algorithm/User.h>
 
 class DataBase
 {
@@ -18,30 +15,11 @@ private:
      */
     std::string type;
     std::string name;
-    getPath(){
-        if(type == "User")
-            return "user.txt";
-        else
-            return "book.txt";
-    }
+    std::string getPath();
 
 public:
-    DataBase(std::string type,std::string name) {
-        this->type=type;
-        this->name=name;
-    }
-    std::vector<User> readUsersDb(){
-             ifstream input(this.getPath);
-            string tempReader;
-            std::vector<User> toReturn;
-            while (input >> tempReader) {
-             std::vector<std::string> splitted = split(input,' ');
-                User newUser = new User(splitted.at(0),splitted.at(1));
-                toReturn.push_back(newUser);
-            }
-            // TODO: не обрабатывается случай при котором в файле нет записей.
-            return toReturn;
-        }
+    DataBase(std::string type,std::string name);
+    std::vector<User> readUsersDb();
 
 };
 #endif // DB_H
