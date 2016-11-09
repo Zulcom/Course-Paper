@@ -1,7 +1,6 @@
 #include <string>
 #include <algorithm/User.h>
 #include <db/db.h>
-#include <vector>
 #include <algorithm>
 int User::getStatus(){
     return this->status;

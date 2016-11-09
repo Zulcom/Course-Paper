@@ -210,3 +210,11 @@ FakesAssemblies/
 GeneratedArtifacts/
 _Pvt_Extensions/
 ModelManifest.xml
+/build-Course-Paper-Desktop_Qt_5_7_0_MinGW_32bit-Debug
+/Course-Paper/algorithm/login.cpp.autosave
+*.vcxproj
+*.filters
+*.db
+*.opendb
+*.sln
+/Course-Paper/GeneratedFiles
