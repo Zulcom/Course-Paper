@@ -1,9 +1,8 @@
+#include<algorithm/User.h>
 #include <db/db.h>
 #include <vector>
 #include <string>
 #include <fstream>
-#include<algorithm/User.h>
-#include<algorithm/algorithm.cpp>
 DataBase::DataBase(std::string type,std::string name){
     this->type=type;
     this->name=name;
@@ -22,7 +21,8 @@ std::vector<User> DataBase::readUsersDb(){
    std::string tempReader;
    std::vector<User> toReturn;
    while (input >> tempReader) {
-       std::vector<std::string> splitted = split(tempReader,' ');
+
+      // std::vector<std::string> splitted = split(tempReader,' ');
        //User * newUser = new User(splitted.at(0),splitted.at(1));
        User * newUser = new User("123","321");
        //TODO: Сделай нормальное имя переменной.
