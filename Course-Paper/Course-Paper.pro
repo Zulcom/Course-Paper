@@ -17,17 +17,21 @@ SOURCES += main.cpp \
     sha256/sha256.cpp \
     algorithm/User.cpp \
     algorithm/algorithm.cpp \
-    db/db.cpp
+    db/db.cpp \
+    search.cpp
 
 HEADERS  += \
     logon.h \
     sha256/sha256.h \
     db/db.h \
-    algorithm/user.h
+    algorithm/user.h \
+    search.h
 
 FORMS    += \
-    logon.ui
+    logon.ui \
+    search.ui
 
 DISTFILES += \
     sha256/LICENSE.txt \
-    img/user.png
+    img/user.png \
+    user.txt
