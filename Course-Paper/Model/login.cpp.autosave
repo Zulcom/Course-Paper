@@ -1,0 +1,9 @@
+class Login{
+    string login;
+    string password;
+public:
+    checkAuth(string login,string pass);
+    Login();
+    L
+    
+}

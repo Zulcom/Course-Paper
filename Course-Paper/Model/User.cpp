@@ -18,14 +18,14 @@ User::User(std::string login,std::string password){
 int User::auth(std::string login, std::string pass){
 	DataBase * usersdb = new DataBase("User","Users");
 	std::vector<User> users = usersdb->readUsersDb();
-    /*
-     Поиск ползователя в векторе по лямбда-выражению
-    */
+	/*
+	 Поиск ползователя в векторе по лямбда-выражению
+	*/
 	std::vector<User>::iterator it =
 			std::find_if(users.begin(), users.end(),
 	[login,pass](User const &n){ return n.login == login && n.password.compare(sha256(pass)) == 0;});
 	if(it != users.end() )
 		return 1;
 	else
-        return 0;
+		return 0;
 }
