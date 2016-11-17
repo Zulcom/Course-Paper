@@ -15,8 +15,7 @@ TEMPLATE = app
 SOURCES += main.cpp \
     logon.cpp \
     sha256/sha256.cpp \
-    algorithm/User.cpp \
-    algorithm/algorithm.cpp \
+    Model/User.cpp \
     db/db.cpp \
     search.cpp
 
@@ -24,7 +23,7 @@ HEADERS  += \
     logon.h \
     sha256/sha256.h \
     db/db.h \
-    algorithm/user.h \
+    Model/user.h \
     search.h
 
 FORMS    += \
@@ -33,5 +32,5 @@ FORMS    += \
 
 DISTFILES += \
     sha256/LICENSE.txt \
-    img/user.png \
+    user.png \
     user.txt

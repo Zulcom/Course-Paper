@@ -1,5 +1,5 @@
 #include <string>
-#include <algorithm/User.h>
+#include <Model/User.h>
 #include <db/db.h>
 #include <algorithm>
 #include "sha256/sha256.h"
@@ -18,8 +18,9 @@ User::User(std::string login,std::string password){
 int User::auth(std::string login, std::string pass){
 	DataBase * usersdb = new DataBase("User","Users");
 	std::vector<User> users = usersdb->readUsersDb();
-    std::ofstream out("out.txt");
-    out << sha256(pass) << std::endl << users.at(1).password << std::endl;
+    /*
+     Поиск ползователя в векторе по лямбда-выражению
+    */
 	std::vector<User>::iterator it =
 			std::find_if(users.begin(), users.end(),
 	[login,pass](User const &n){ return n.login == login && n.password.compare(sha256(pass)) == 0;});

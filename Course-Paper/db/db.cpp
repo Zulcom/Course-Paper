@@ -1,4 +1,4 @@
-#include<algorithm/User.h>
+#include<Model/User.h>
 #include <db/db.h>
 #include <vector>
 #include <string>

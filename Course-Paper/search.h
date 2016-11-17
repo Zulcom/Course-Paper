@@ -15,10 +15,10 @@ public:
     explicit search(QWidget *parent = 0);
     ~search();
 private slots:
-    void pullRows();
+    void pullRows(); // заполнение таблицы
 private:
     Ui::search *ui;
-    enum
+    enum // столбцы таблицы
     {
       TITLE,AUTHOR,PAGESCOUNT,PRICE,DATE
     };
