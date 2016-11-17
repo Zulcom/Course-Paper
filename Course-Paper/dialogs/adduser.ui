@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>addUser</class>
+ <widget class="QDialog" name="addUser">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>400</width>
+    <height>300</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Dialog</string>
+  </property>
+  <widget class="QPushButton" name="addUserButton">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>164</y>
+     <width>327</width>
+     <height>39</height>
+    </rect>
+   </property>
+   <property name="cursor">
+    <cursorShape>PointingHandCursor</cursorShape>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:#128A42;
+	color:#fff;
+width: 99%;
+	padding: 3%;
+	background: #21A957;
+	font-family: 'Arial', sans-serif;
+	color: #ECECEC;
+	font-size: 20px;
+	font-weight:500;
+	border-radius: 5px;
+	margin-top:10px;</string>
+   </property>
+   <property name="text">
+    <string>Добавить</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="password">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>122</y>
+     <width>327</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">text-align:left;
+	background:#D3D3D3;;
+	font-family: 'Open Sans', sans-serif;
+	color: #676767;
+	font-weight:600;
+	font-size: 16px;
+	border-radius: 5px;
+	border:1px solid #DED6D6;
+	width:0%;
+	padding-left:2px;
+	margin-top:10px;</string>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Password</enum>
+   </property>
+   <property name="placeholderText">
+    <string>Пароль</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="username">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>80</y>
+     <width>327</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">text-align:left;
+	background:#D3D3D3;;
+	font-family: 'Open Sans', sans-serif;
+	color: #676767;
+	font-weight:600;
+	font-size: 16px;
+	border-radius: 5px;
+	border:1px solid #DED6D6;
+	width:0%;
+	margin-top:10px;</string>
+   </property>
+   <property name="echoMode">
+    <enum>QLineEdit::Normal</enum>
+   </property>
+   <property name="placeholderText">
+    <string> Логин</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>addUserButton</sender>
+   <signal>clicked()</signal>
+   <receiver>addUser</receiver>
+   <slot>accept()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>179</x>
+     <y>188</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>202</x>
+     <y>257</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

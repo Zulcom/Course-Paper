@@ -17,6 +17,12 @@ public:
 private slots:
 	void pullRows(); // заполнение таблицы книг
 	void pullUsers(int type =-1); // заполнение таблицы пользователей
+    void on_addBook_triggered();
+
+    void on_deleteBook_triggered();
+
+    void on_addUser_triggered();
+
 private:
 	Ui::search *ui;
 

@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/all">
+        <file>book.txt</file>
+        <file>user.png</file>
+        <file>user.txt</file>
+    </qresource>
+</RCC>

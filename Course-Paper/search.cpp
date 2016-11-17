@@ -5,6 +5,7 @@
 #include <Model/User.h>
 #include <string>
 #include <vector>
+#include <dialogs/adduser.h>
 
 search::search(QWidget *parent) :
 	QMainWindow(parent),
@@ -88,4 +89,19 @@ void search::pullUsers(int type) {
 			ui->tableWidget->setItem(lastRow, 0, thisLogin);
 		}
 	}
+}
+
+void search::on_addBook_triggered()
+{
+}
+
+void search::on_deleteBook_triggered()
+{
+
+}
+
+void search::on_addUser_triggered()
+{
+    addUser *ad = new addUser(this);
+    ad->show();
 }
