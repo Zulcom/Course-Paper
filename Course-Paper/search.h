@@ -9,15 +9,16 @@ class search;
 
 class search : public QMainWindow
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit search(QWidget *parent = 0);
-    ~search();
+	explicit search(QWidget *parent = 0);
+	~search();
 private slots:
-    void pullRows(int); // заполнение таблицы
+	void pullRows(); // заполнение таблицы книг
+	void pullUsers(int type =-1); // заполнение таблицы пользователей
 private:
-    Ui::search *ui;
+	Ui::search *ui;
 
 };
 

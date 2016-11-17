@@ -24,6 +24,7 @@ void Logon::on_loginButton_clicked() // слот нажатия на кнопк�
         search *sh = new search(this);
         emit close(); // закрыть окно логина
         sh->show(); // показать главное окно программы
+		sh->setFixedSize(800, 500);
     }
     else  //иначе показать кнопку "забыли пароль?"
         ui->forgotpassword->setVisible(true); ;

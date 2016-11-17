@@ -2,6 +2,7 @@
 #include "ui_search.h"
 #include <db/db.h>
 #include <Model/Book.h>
+#include <Model/User.h>
 #include <string>
 #include <vector>
 
@@ -19,10 +20,9 @@ search::search(QWidget *parent) :
 	ui->tableWidget->setHorizontalHeaderLabels(titles); // установка названий столбцов
 	ui->searchType->addItem("Книги");
 	ui->searchType->addItem("Читатели");
-	connect(ui->searchType, SIGNAL(currentIndexChanged(int)), this, SLOT(pullRows(int)));
-	connect(ui->searchBox,
-			SIGNAL(editingFinished()),this,
-			SLOT(pullRows())); // связываем поисковую строку с обновлением таблицы
+	connect(ui->searchType, SIGNAL(currentIndexChanged(int)), this, SLOT(pullUsers(int)));
+	connect(ui->searchBox,SIGNAL(editingFinished()),this,SLOT(pullRows())); // связываем поисковую строку с обновлением таблицы
+	emit pullRows();
 }
 
 search::~search()
@@ -33,16 +33,24 @@ search::~search()
  * @brief search::pullRows
  *  Слот, заполняющий таблицу в интерфейсе.
  */
-void search::pullRows(int type = -1)
+void search::pullRows()
 {
+	if(ui->searchType->currentIndex()>=1)
+	{
+		emit pullUsers(ui->searchType->currentIndex());
+		return;
+	}
    ui->tableWidget->setRowCount(0); // очистка таблицы
+	QStringList titles; // названия стоблцов
+	titles  << "Название" << "Автор" << "Число страниц" << "Цена" << "Дата возвращения";
+	ui->tableWidget->setColumnCount(5);
+	ui->tableWidget->setHorizontalHeaderLabels(titles);
    DataBase * bookdb = new DataBase("Book", "Book");
    std::vector<Book> books = bookdb->readBookDb();
    for(Book thisBook : books)
    {
 	   int lastRow = ui->tableWidget->rowCount();
 	   ui->tableWidget->insertRow(lastRow); // добавить строку в конец
-	   /* Не стоит беспокоиться насчёт удаления этих ссылок, поскольку table::clear() удалит их сам.*/
 	   QTableWidgetItem * thisTitle = new QTableWidgetItem(QString::fromStdString(thisBook.getTitle()));
 	   QTableWidgetItem * thisAuthor = new QTableWidgetItem(QString::fromStdString(thisBook.getAuthor()));
 	   QTableWidgetItem * thisCount = new QTableWidgetItem(QString::number(thisBook.getpageCount()));
@@ -56,4 +64,28 @@ void search::pullRows(int type = -1)
 	   ui->tableWidget->setItem(lastRow, Book::DATE, thisDate);
    }
 
+}
+void search::pullUsers(int type) {
+	if(type<1)
+	{
+		emit pullRows(); // TODO:прерывает ли емит функцию?
+		return;
+	}
+	ui->tableWidget->setRowCount(0); // очистка таблицы
+	QStringList titles; // названия стоблцов
+	titles << "Читатель";
+	ui->tableWidget->setColumnCount(1);
+	ui->tableWidget->setHorizontalHeaderLabels(titles);
+	DataBase * userdb = new DataBase("User", "Users");
+	std::vector<User> users = userdb->readUsersDb();
+	for(User thisUser : users)
+	{
+		if(thisUser.getStatus() > 0)
+		{
+			int lastRow = ui->tableWidget->rowCount();
+			ui->tableWidget->insertRow(lastRow);
+			QTableWidgetItem * thisLogin = new QTableWidgetItem(QString::fromStdString(thisUser.getLogin()));
+			ui->tableWidget->setItem(lastRow, 0, thisLogin);
+		}
+	}
 }

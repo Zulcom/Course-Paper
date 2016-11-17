@@ -17,9 +17,11 @@ std::vector<User> DataBase::readUsersDb(){
    }
    std::string login,password;
    std::vector<User> toReturn;
+   int status;
    while (input >> login) {
 	   input >> password;
-	   toReturn.push_back(*new User(login, password));
+	   input >> status;
+	   toReturn.push_back(*new User(login, password,status));
    }
    return toReturn;
 }

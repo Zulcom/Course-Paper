@@ -11,9 +11,10 @@ void User::setStatus(int status){
 	this->status=status;
 }
 
-User::User(std::string login,std::string password){
+User::User(std::string login,std::string password,int status){
 	this->login=login;
 	this->password=password;
+	this->status = status;
 }
 int User::auth(std::string login, std::string pass){
 	DataBase * usersdb = new DataBase("User","Users");
@@ -29,3 +30,4 @@ int User::auth(std::string login, std::string pass){
 	else
 		return 0;
 }
+std::string User::getLogin() const {return login;}
