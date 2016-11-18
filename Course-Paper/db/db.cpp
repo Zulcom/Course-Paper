@@ -59,5 +59,5 @@ bool DataBase::writeUserDb(std::vector<User> whatsWrite){
                << std::endl;
     }
     output.close();
-
+    return 1; //TODO: Е Р Е С Ь
 }

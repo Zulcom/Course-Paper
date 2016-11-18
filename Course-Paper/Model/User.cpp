@@ -12,7 +12,7 @@ User::User(std::string login,std::string password,int status){
 }
 User::User(std::string login, std::string password) {
 	this->login = login;
-	this->password = login;
+    this->password = password;
 	this->status = -2;
 }
 
@@ -26,7 +26,7 @@ bool User::auth(){
 	std::vector<User>::iterator it =
 			std::find_if(users.begin(), users.end(),
 			[thisLogin,thisPassword](User const &n){ return n.login == thisLogin && n.password.compare(sha256(thisPassword)) == 0;});
-	return it != users.end;
+    return (it != users.end());
 	
 }
 bool User::addUser(User toAdd)
