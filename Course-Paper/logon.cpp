@@ -2,6 +2,7 @@
 #include "ui_logon.h"
 #include "Model/User.h"
 #include "search.h"
+
 Logon::Logon(QWidget *parent) :
 	QDialog(parent),
 	ui(new Ui::Logon){
@@ -12,14 +13,12 @@ Logon::Logon(QWidget *parent) :
 //   connect(ui->loginButton,SIGNAL(clicked()),this,SLOT(on_loginButton_clicked()));
 }
 
-Logon::~Logon()
-{
-	delete ui;
-}
+Logon::~Logon(){ delete ui; }
 
 void Logon::on_loginButton_clicked() // слот нажатия на кнопку логина
 {
-    if(User::auth(ui->username->text().toStdString(),ui->password->text().toStdString())){
+	User* user = new User(ui->username->text().toStdString(), ui->password->text().toStdString());
+	if(user->auth()){
 		// если аутентификация успешна
 		search *sh = new search(this);
 		emit close(); // закрыть окно логина
