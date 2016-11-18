@@ -14,11 +14,12 @@ class addUser : public QDialog
 public:
     explicit addUser(QWidget *parent = 0);
     ~addUser();
-
+    void accept();
 private slots:
     void on_addUserButton_clicked();
 
 private:
+    QString boxtitile = "Добавление пользователя";
     Ui::addUser *ui;
 };
 

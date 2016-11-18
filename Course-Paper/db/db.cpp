@@ -46,3 +46,18 @@ std::vector<Book> DataBase::readBookDb() {
 	}
 	return toReturn;
 }
+bool DataBase::writeUserDb(std::vector<User> whatsWrite){
+    std::ofstream output("user.txt");
+    if(!output.is_open())
+    {
+        exit(-2);
+    }
+    for(User thisUser : whatsWrite){
+        output << thisUser.getLogin() << " "
+               << thisUser.getPassword() << " "
+               << thisUser.getStatus()
+               << std::endl;
+    }
+    output.close();
+
+}

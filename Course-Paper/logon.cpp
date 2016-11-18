@@ -9,7 +9,7 @@ Logon::Logon(QWidget *parent) :
 	ui->forgotpassword->setVisible(false); // спрятать кнопку "забыли пароль"
    QPixmap pix("user.png");
    ui->logonImg->setPixmap(pix); // загрузить картинку
-   connect(ui->loginButton,SIGNAL(clicked()),this,SLOT(on_loginButton_clicked()));
+//   connect(ui->loginButton,SIGNAL(clicked()),this,SLOT(on_loginButton_clicked()));
 }
 
 Logon::~Logon()
@@ -19,7 +19,7 @@ Logon::~Logon()
 
 void Logon::on_loginButton_clicked() // слот нажатия на кнопку логина
 {
-	if(User::auth(ui->username->text().toStdString(),ui->password->text().toStdString())){
+    if(User::auth(ui->username->text().toStdString(),ui->password->text().toStdString())){
 		// если аутентификация успешна
 		search *sh = new search(this);
 		emit close(); // закрыть окно логина

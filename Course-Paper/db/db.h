@@ -21,6 +21,7 @@ public:
 	DataBase(std::string type,std::string name);
 	std::vector<User> readUsersDb();
 	std::vector<Book> readBookDb();
+    bool writeUserDb(std::vector<User> whatsWrite);
 
 };
 #endif // DB_H

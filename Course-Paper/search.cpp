@@ -21,8 +21,8 @@ search::search(QWidget *parent) :
 	ui->tableWidget->setHorizontalHeaderLabels(titles); // установка названий столбцов
 	ui->searchType->addItem("Книги");
 	ui->searchType->addItem("Читатели");
-	connect(ui->searchType, SIGNAL(currentIndexChanged(int)), this, SLOT(pullUsers(int)));
-	connect(ui->searchBox,SIGNAL(editingFinished()),this,SLOT(pullRows())); // связываем поисковую строку с обновлением таблицы
+    connect(ui->searchType, SIGNAL(currentIndexChanged(int)), this, SLOT(pullUsers(int)));
+    connect(ui->searchBox,SIGNAL(editingFinished()),this,SLOT(pullRows())); // связываем поисковую строку с обновлением таблицы
 	emit pullRows();
 }
 
@@ -103,5 +103,5 @@ void search::on_deleteBook_triggered()
 void search::on_addUser_triggered()
 {
     addUser *ad = new addUser(this);
-    ad->show();
+    ad->exec();
 }
