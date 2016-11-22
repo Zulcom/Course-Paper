@@ -69,7 +69,6 @@ QMenubar:item:selected {color:black;}</string>
      <string>Файл</string>
     </property>
     <addaction name="addBook"/>
-    <addaction name="deleteBook"/>
     <addaction name="separator"/>
     <addaction name="addUser"/>
     <addaction name="delUser"/>
@@ -80,11 +79,6 @@ QMenubar:item:selected {color:black;}</string>
   <action name="addBook">
    <property name="text">
     <string>Добавить книгу</string>
-   </property>
-  </action>
-  <action name="deleteBook">
-   <property name="text">
-    <string>Исключить книгу</string>
    </property>
   </action>
   <action name="addUser">
