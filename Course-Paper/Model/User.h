@@ -9,6 +9,7 @@ public:
 	User(std::string login, std::string password, int status);
 	User(std::string login, std::string password);
 	static bool addUser(User toAdd);
+	static bool remove(std::string username);
 	int getStatus() const;
 	void setStatus(int status);
 	std::string getPassword() const;

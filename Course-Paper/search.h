@@ -23,6 +23,8 @@ private slots:
 
     void on_addUser_triggered();
 
+    void on_delUser_triggered();
+
 private:
 	Ui::search *ui;
 

@@ -12,7 +12,7 @@ User::User(std::string login,std::string password,int status){
 }
 User::User(std::string login, std::string password) {
 	this->login = login;
-    this->password = password;
+	this->password = password;
 	this->status = -2;
 }
 
@@ -26,7 +26,7 @@ bool User::auth(){
 	std::vector<User>::iterator it =
 			std::find_if(users.begin(), users.end(),
 			[thisLogin,thisPassword](User const &n){ return n.login == thisLogin && n.password.compare(sha256(thisPassword)) == 0;});
-    return (it != users.end());
+	return (it != users.end());
 	
 }
 bool User::addUser(User toAdd)
@@ -37,6 +37,21 @@ bool User::addUser(User toAdd)
 	bool res = usersdb->writeUserDb(users);
 	return res;
 }
+bool User::remove(std::string username) {
+	DataBase * usersdb = new DataBase("User", "Users");
+	std::vector<User> users = usersdb->readUsersDb();
+	std::vector<User>::iterator it =
+		std::find_if(users.begin(), users.end(),
+			[username](User const &n){ return n.login == username;});
+	if(it != users.end())
+	{
+		users.erase(it);
+        return usersdb->writeUserDb(users);
+	}
+	// данный юзер не найден
+	else return false;
+}
+
 // Getters & Setters
 std::string User::getPassword() const {return password;}
 std::string User::getLogin() const {return login;}

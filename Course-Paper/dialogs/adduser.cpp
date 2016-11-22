@@ -45,7 +45,5 @@ void addUser::on_addUserButton_clicked() {
 	if (res) 
 		QMessageBox::information(this, boxtitile, "Пользователь успешно добавлен!");
 	else
-	{
 		QMessageBox::warning(this, boxtitile, "Пользователь не был добавлен!");
-	}
 }

@@ -6,7 +6,7 @@
 #include <string>
 #include <vector>
 #include <dialogs/adduser.h>
-
+#include <dialogs/deluser.h>
 search::search(QWidget *parent) :
 	QMainWindow(parent),
 	ui(new Ui::search)
@@ -23,7 +23,7 @@ search::search(QWidget *parent) :
 	ui->searchType->addItem("Читатели");
     connect(ui->searchType, SIGNAL(currentIndexChanged(int)), this, SLOT(pullUsers(int)));
     connect(ui->searchBox,SIGNAL(editingFinished()),this,SLOT(pullRows())); // связываем поисковую строку с обновлением таблицы
-	emit pullRows();
+    emit pullRows();
 }
 
 search::~search()
@@ -104,4 +104,11 @@ void search::on_addUser_triggered()
 {
     addUser *ad = new addUser(this);
     ad->exec();
+}
+
+
+void search::on_delUser_triggered()
+{
+    delUser *du = new delUser(this);
+    du->exec();
 }
