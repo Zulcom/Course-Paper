@@ -12,16 +12,16 @@ private:
 	/**
 	 * @brief type Datasase type.
 	 * User is Database contains user data.
-	 * Book is Database contains all staff about books.
+     * Book is Database contains all staff abouЫt books.
 	 */
 	std::string type;
 	std::string name;
 
 public:
-	DataBase(std::string type,std::string name);
+	DataBase(std::string type, std::string name);
 	std::vector<User> readUsersDb();
 	std::vector<Book> readBookDb();
-    bool writeUserDb(std::vector<User> whatsWrite);
-
+	bool writeUserDb(std::vector<User> whatsWrite);
+	bool writeBookDb(std::vector<Book> whatsWrite);
 };
 #endif // DB_H

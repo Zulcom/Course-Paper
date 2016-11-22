@@ -42,8 +42,10 @@ void addUser::on_addUserButton_clicked() {
 	                      sha256(ui->password->text().toStdString()),
 	                      ui->status->currentIndex());
 	bool res = User::addUser(*user);
-	if (res) 
-		QMessageBox::information(this, boxtitile, "Пользователь успешно добавлен!");
+	if (res)
+		QMessageBox::information(this, boxtitile,
+		                         "Пользователь успешно добавлен!");
 	else
-		QMessageBox::warning(this, boxtitile, "Пользователь не был добавлен!");
+		QMessageBox::warning(this, boxtitile,
+		                     "Пользователь не был добавлен!");
 }

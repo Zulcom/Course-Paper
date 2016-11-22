@@ -3,7 +3,8 @@
 
 #include<string>
 
-class User{
+class User
+{
 public:
 	bool auth();
 	User(std::string login, std::string password, int status);

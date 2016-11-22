@@ -3,20 +3,26 @@
 
 #include <QDialog>
 
-namespace Ui {
-class addBook;
+namespace Ui
+{
+	class addBook;
 }
 
 class addBook : public QDialog
 {
-    Q_OBJECT
+	Q_OBJECT
 
 public:
-    explicit addBook(QWidget *parent = 0);
-    ~addBook();
+	explicit addBook(QWidget* parent = 0);
+	~addBook();
+	void accept();
+private slots:
+
+	void on_buttonBox_accepted();
 
 private:
-    Ui::addBook *ui;
+	QString boxtitle = "Добавление книги";
+	Ui::addBook* ui;
 };
 
 #endif // ADDBOOK_H
