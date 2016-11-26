@@ -23,6 +23,13 @@ search::search(QWidget* parent) :
 	ui->tableWidget->setHorizontalHeaderLabels(titles); // установка названий столбцов
 	ui->searchType->addItem("Книги");
 	ui->searchType->addItem("Читатели");
+    if(User::thisStatus >0){
+    ui->delUser->setVisible(false);
+    ui->addUser->setVisible(false);
+    }
+    if(User::thisStatus >1){
+    ui->addBook->setVisible(false);
+    }
 	connect(ui->searchType, SIGNAL(currentIndexChanged(int)), this, SLOT(pullUsers(int)));
 	connect(ui->searchBox,SIGNAL(editingFinished()), this,SLOT(pullRows())); // связываем поисковую строку с обновлением таблицы
 	emit pullRows();

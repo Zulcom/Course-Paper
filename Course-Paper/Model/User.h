@@ -15,6 +15,8 @@ public:
 	void setStatus(int status);
 	std::string getPassword() const;
 	std::string getLogin() const;
+
+        static int thisStatus;
 private:
 	std::string login;
 	std::string password;
@@ -24,6 +26,6 @@ private:
 	* 1 is Librian
 	* 2 is Reader
 	*/
-	int status;
+        int status;
 };
 #endif // USER_H
