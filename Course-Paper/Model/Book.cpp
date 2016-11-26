@@ -1,7 +1,7 @@
 #include <Model/Book.h>
 #include <string>
 #include <db/db.h>
-
+#include <search.h>
 Book::Book(const std::string& title, const std::string& author, const int pagecount, const int price, const std::string& date)
 	: title(title),
 	  author(author),
@@ -10,10 +10,8 @@ Book::Book(const std::string& title, const std::string& author, const int pageco
 	  date(date) {}
 
 bool Book::add(Book book) {
-	DataBase* booksdb = new DataBase("Book", "Books");
-	std::vector<Book> books = booksdb->readBookDb();
-	books.push_back(book);
-	bool res = booksdb->writeBookDb(books);
+	search::books.push_back(book);
+	bool res = DataBase::writeBookDb(search::books);
 	return res;
 }
 

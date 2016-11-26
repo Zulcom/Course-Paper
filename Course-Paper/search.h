@@ -3,6 +3,8 @@
 
 #include <QMainWindow>
 #include <string>
+#include "Model/Book.h"
+#include "Model/User.h"
 
 namespace Ui
 {
@@ -15,6 +17,8 @@ class search : public QMainWindow
 
 public:
 	explicit search(QWidget* parent = 0);
+	static std::vector<Book> books;
+	static std::vector<User> users;
 	~search();
 private slots:
 	void pullRows(); // заполнение таблицы книг

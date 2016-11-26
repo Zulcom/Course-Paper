@@ -8,7 +8,8 @@
 #include <dialogs/adduser.h>
 #include <dialogs/deluser.h>
 #include <dialogs/addbook.h>
-
+std::vector<User> search::users = DataBase::readUsersDb();
+std::vector<Book> search::books = DataBase::readBookDb();
 search::search(QWidget* parent) :
 	QMainWindow(parent),
 	ui(new Ui::search) {
@@ -46,9 +47,7 @@ void search::pullRows() {
 	titles << "Название" << "Автор" << "Число страниц" << "Цена" << "Дата возвращения";
 	ui->tableWidget->setColumnCount(5);
 	ui->tableWidget->setHorizontalHeaderLabels(titles);
-	DataBase* bookdb = new DataBase("Book", "Book");
-	std::vector<Book> books = bookdb->readBookDb();
-	for (Book thisBook : books)
+    for (Book thisBook : search::books)
 	{
 		int lastRow = ui->tableWidget->rowCount();
 		ui->tableWidget->insertRow(lastRow); // добавить строку в конец
@@ -78,9 +77,7 @@ void search::pullUsers(int type) {
 	titles << "Читатель";
 	ui->tableWidget->setColumnCount(1);
 	ui->tableWidget->setHorizontalHeaderLabels(titles);
-	DataBase* userdb = new DataBase("User", "Users");
-	std::vector<User> users = userdb->readUsersDb();
-	for (User thisUser : users)
+    for (User thisUser : search::users)
 	{
 		if (thisUser.getStatus() > 0)
 		{
