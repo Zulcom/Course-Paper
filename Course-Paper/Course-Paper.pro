@@ -20,8 +20,8 @@ SOURCES += main.cpp \
     search.cpp \
     Model/Book.cpp \
     dialogs/adduser.cpp \
-    dialogs/deluser.cpp \
-    dialogs/addbook.cpp
+    dialogs/addbook.cpp \
+    dialogs/deluser.cpp
 
 HEADERS  += \
     logon.h \

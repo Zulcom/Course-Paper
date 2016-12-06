@@ -23,5 +23,7 @@ public:
 	static std::vector<Book> readBookDb();
 	static bool writeUserDb(std::vector<User> whatsWrite);
 	static bool writeBookDb(std::vector<Book> whatsWrite);
+	/*static bool serialize(std::vector<Book> whatSerialize);
+	static std::vector<Book> deserialize();*/
 };
 #endif // DB_H

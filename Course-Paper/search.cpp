@@ -21,18 +21,23 @@ search::search(QWidget* parent) :
 	ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers); // запретить редактирование ячеек
 	ui->tableWidget->setColumnCount(5);
 	ui->tableWidget->setHorizontalHeaderLabels(titles); // установка названий столбцов
-	ui->searchType->addItem("Книги");
-	ui->searchType->addItem("Читатели");
-    if(User::thisStatus >0){
-    ui->delUser->setVisible(false);
-    ui->addUser->setVisible(false);
-    }
-    if(User::thisStatus >1){
+    if(User::thisStatus  == 2 ){
+    ui->searchType->setVisible(false);
     ui->addBook->setVisible(false);
     }
+    if(User::thisStatus  > 0){
+	ui->delUser->setVisible(false);
+	ui->addUser->setVisible(false);
+	}
+    if(User::thisStatus < 2){
+        ui->searchType->addItem("Книги");
+        ui->searchType->addItem("Читатели");
+	};
+	//DataBase::serialize(books);
+	//books = DataBase::deserialize();
 	connect(ui->searchType, SIGNAL(currentIndexChanged(int)), this, SLOT(pullUsers(int)));
 	connect(ui->searchBox,SIGNAL(editingFinished()), this,SLOT(pullRows())); // связываем поисковую строку с обновлением таблицы
-	emit pullRows();
+	//emit pullRows();
 }
 
 search::~search() {
@@ -54,7 +59,7 @@ void search::pullRows() {
 	titles << "Название" << "Автор" << "Число страниц" << "Цена" << "Дата возвращения";
 	ui->tableWidget->setColumnCount(5);
 	ui->tableWidget->setHorizontalHeaderLabels(titles);
-    for (Book thisBook : search::books)
+	for (Book thisBook : search::books)
 	{
 		int lastRow = ui->tableWidget->rowCount();
 		ui->tableWidget->insertRow(lastRow); // добавить строку в конец
@@ -84,7 +89,7 @@ void search::pullUsers(int type) {
 	titles << "Читатель";
 	ui->tableWidget->setColumnCount(1);
 	ui->tableWidget->setHorizontalHeaderLabels(titles);
-    for (User thisUser : search::users)
+	for (User thisUser : search::users)
 	{
 		if (thisUser.getStatus() > 0)
 		{

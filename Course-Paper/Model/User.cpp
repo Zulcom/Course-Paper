@@ -31,7 +31,6 @@ bool User::auth() {
     return (it != users.end());
 
 }
-
 bool User::addUser(User toAdd) {
 	DataBase* usersdb = new DataBase("User", "Users");
 	std::vector<User> users = usersdb->readUsersDb();
