@@ -1,0 +1,170 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="search">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>801</width>
+    <height>500</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <widget class="QTableWidget" name="tableWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>20</y>
+      <width>801</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <attribute name="horizontalHeaderCascadingSectionResizes">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderCascadingSectionResizes">
+     <bool>true</bool>
+    </attribute>
+    <row>
+     <property name="text">
+      <string>1</string>
+     </property>
+    </row>
+    <column>
+     <property name="text">
+      <string>Название</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Автор</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Число страниц</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Цена</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Дата возвращения</string>
+     </property>
+    </column>
+    <item row="0" column="0">
+     <property name="text">
+      <string>Стихи</string>
+     </property>
+    </item>
+    <item row="0" column="1">
+     <property name="text">
+      <string>Пушкин А.С</string>
+     </property>
+    </item>
+    <item row="0" column="2">
+     <property name="text">
+      <string>200</string>
+     </property>
+    </item>
+    <item row="0" column="3">
+     <property name="text">
+      <string>5000</string>
+     </property>
+    </item>
+    <item row="0" column="4">
+     <property name="text">
+      <string>20-01-2016</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QWidget" name="layoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>801</width>
+      <height>24</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="horizontalLayout">
+     <item>
+      <widget class="QLineEdit" name="searchBox"/>
+     </item>
+     <item>
+      <widget class="QComboBox" name="searchType"/>
+     </item>
+    </layout>
+   </widget>
+   <zorder>layoutWidget</zorder>
+   <zorder>tableWidget</zorder>
+  </widget>
+  <widget class="QMenuBar" name="menubar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>801</width>
+     <height>20</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QMenubar:item:hover {color:black;}
+QMenubar:item:selected {color:black;}</string>
+   </property>
+   <widget class="QMenu" name="menu">
+    <property name="title">
+     <string>Файл</string>
+    </property>
+    <addaction name="addBook"/>
+    <addaction name="separator"/>
+    <addaction name="addUser"/>
+    <addaction name="delUser"/>
+   </widget>
+   <addaction name="menu"/>
+  </widget>
+  <widget class="QStatusBar" name="statusbar"/>
+  <action name="addBook">
+   <property name="text">
+    <string>Добавить книгу</string>
+   </property>
+  </action>
+  <action name="addUser">
+   <property name="text">
+    <string>Добавить пользователя</string>
+   </property>
+  </action>
+  <action name="delUser">
+   <property name="text">
+    <string>Удалить пользователя</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
+ <connections>
+  <connection>
+   <sender>searchBox</sender>
+   <signal>editingFinished()</signal>
+   <receiver>tableWidget</receiver>
+   <slot>update()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>159</x>
+     <y>47</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>170</x>
+     <y>119</y>
+    </hint>
+   </hints>
+  </connection>
+ </connections>
+</ui>

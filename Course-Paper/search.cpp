@@ -8,6 +8,7 @@
 #include <dialogs/adduser.h>
 #include <dialogs/deluser.h>
 #include <dialogs/addbook.h>
+#include <dialogs/bookinfo.h>
 std::vector<User> search::users = DataBase::readUsersDb();
 std::vector<Book> search::books = DataBase::readBookDb();
 search::search(QWidget* parent) :
@@ -21,23 +22,26 @@ search::search(QWidget* parent) :
 	ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers); // запретить редактирование ячеек
 	ui->tableWidget->setColumnCount(5);
 	ui->tableWidget->setHorizontalHeaderLabels(titles); // установка названий столбцов
-    if(User::thisStatus  == 2 ){
-    ui->searchType->setVisible(false);
-    ui->addBook->setVisible(false);
-    }
-    if(User::thisStatus  > 0){
+	if(User::thisStatus  == 2 ){
+	ui->searchType->setVisible(false);
+	ui->addBook->setVisible(false);
+	}
+	if(User::thisStatus  > 0){
 	ui->delUser->setVisible(false);
 	ui->addUser->setVisible(false);
 	}
-    if(User::thisStatus < 2){
-        ui->searchType->addItem("Книги");
-        ui->searchType->addItem("Читатели");
+	if(User::thisStatus < 2){
+		ui->searchType->addItem("Книги");
+		ui->searchType->addItem("Читатели");
 	};
 	//DataBase::serialize(books);
 	//books = DataBase::deserialize();
 	connect(ui->searchType, SIGNAL(currentIndexChanged(int)), this, SLOT(pullUsers(int)));
 	connect(ui->searchBox,SIGNAL(editingFinished()), this,SLOT(pullRows())); // связываем поисковую строку с обновлением таблицы
-	//emit pullRows();
+    connect(ui->tableWidget,SIGNAL(cellDoubleClicked(int,int)),this,SLOT(displayRowInfo(int,int)));
+    connect(ui->tableWidget,SIGNAL(cellClicked(int,int)),this,SLOT(selectAll(int,int)));
+    emit pullRows();
+
 }
 
 search::~search() {
@@ -77,11 +81,11 @@ void search::pullRows() {
 	}
 
 }
-
+void search::selectAll(int row, int col){ui->tableWidget->selectRow(row);}
 void search::pullUsers(int type) {
 	if (type < 1)
 	{
-		emit pullRows(); // TODO:прерывает ли емит функцию?
+        emit pullRows();
 		return;
 	}
 	ui->tableWidget->setRowCount(0); // очистка таблицы
@@ -100,6 +104,17 @@ void search::pullUsers(int type) {
 		}
 	}
 }
+
+void search::displayRowInfo(int row, int col){
+     ui->tableWidget->selectRow(row); // при нажатии выделяй всю строку, а не одну ячейку
+    bookInfo* bki = new bookInfo(this);
+    QModelIndexList selection = ui->tableWidget->selectionModel()->selectedRows();
+
+
+
+    bki->exec();
+}
+
 
 void search::on_addBook_triggered() {
 	addBook* adb = new addBook(this);

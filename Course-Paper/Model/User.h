@@ -2,6 +2,8 @@
 #define USER_H
 
 #include<string>
+#include "Book.h"
+#include <vector>
 
 class User
 {
@@ -16,6 +18,8 @@ public:
 	std::string getPassword() const;
 	std::string getLogin() const;
 
+	std::vector<Book> doljen1() const { return doljen; }
+	void set_doljen(std::vector<Book> doljen) { this->doljen = doljen; }
         static int thisStatus;
 private:
 	std::string login;
@@ -26,6 +30,7 @@ private:
 	* 1 is Librian
 	* 2 is Reader
 	*/
-        int status;
+    int status;
+	std::vector<Book> doljen;
 };
 #endif // USER_H

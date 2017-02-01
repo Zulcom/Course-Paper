@@ -21,7 +21,8 @@ SOURCES += main.cpp \
     Model/Book.cpp \
     dialogs/adduser.cpp \
     dialogs/addbook.cpp \
-    dialogs/deluser.cpp
+    dialogs/deluser.cpp \
+    dialogs/bookinfo.cpp
 
 HEADERS  += \
     logon.h \
@@ -32,14 +33,16 @@ HEADERS  += \
     Model/Book.h \
     dialogs/adduser.h \
     dialogs/deluser.h \
-    dialogs/addbook.h
+    dialogs/addbook.h \
+    dialogs/bookinfo.h
 
 FORMS    += \
     logon.ui \
     search.ui \
     dialogs/adduser.ui \
     dialogs/deluser.ui \
-    dialogs/addbook.ui
+    dialogs/addbook.ui \
+    dialogs/bookinfo.ui
 
 DISTFILES += \
     sha256/LICENSE.txt \

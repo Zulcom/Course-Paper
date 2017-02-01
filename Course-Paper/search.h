@@ -23,7 +23,9 @@ public:
 private slots:
 	void pullRows(); // заполнение таблицы книг
 	void pullUsers(int type = -1); // заполнение таблицы пользователей
-	void on_addBook_triggered();
+    void displayRowInfo(int row,int col);
+    void selectAll(int row,int col);
+    void on_addBook_triggered();
 
 	void on_deleteBook_triggered();
 
