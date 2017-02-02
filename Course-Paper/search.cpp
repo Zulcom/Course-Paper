@@ -3,8 +3,8 @@
 #include <db/db.h>
 #include <Model/Book.h>
 #include <Model/User.h>
-#include <string>
 #include <vector>
+#include <sstream>
 #include <dialogs/adduser.h>
 #include <dialogs/deluser.h>
 #include <dialogs/addbook.h>
@@ -90,17 +90,25 @@ void search::pullUsers(int type) {
 	}
 	ui->tableWidget->setRowCount(0); // очистка таблицы
 	QStringList titles; // названия стоблцов
-	titles << "Читатель";
-	ui->tableWidget->setColumnCount(1);
+    titles << "Читатель" << "id книг";
+    ui->tableWidget->setColumnCount(2);
 	ui->tableWidget->setHorizontalHeaderLabels(titles);
-	for (User thisUser : search::users)
+    std::vector<User> SUKA_BLYAD = DataBase::readUsersDb();
+    for (User thisUser : SUKA_BLYAD)
 	{
 		if (thisUser.getStatus() > 0)
 		{
 			int lastRow = ui->tableWidget->rowCount();
 			ui->tableWidget->insertRow(lastRow);
-			QTableWidgetItem* thisLogin = new QTableWidgetItem(QString::fromStdString(thisUser.getLogin()));
-			ui->tableWidget->setItem(lastRow, 0, thisLogin);
+            QTableWidgetItem* thisLogin = new QTableWidgetItem(QString::fromStdString(thisUser.getLogin()));
+            std::string idStorage;
+            for(Book i : thisUser.getDoljen()){
+                idStorage+= std::to_string(i.getid());
+                idStorage+= " ";
+            }
+            QTableWidgetItem * thisBooks = new QTableWidgetItem(QString::fromStdString(idStorage));
+            ui->tableWidget->setItem(lastRow, 0, thisLogin);
+            ui->tableWidget->setItem(lastRow, 1, thisBooks);
 		}
 	}
 }

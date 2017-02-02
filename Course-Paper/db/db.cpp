@@ -6,6 +6,7 @@
 #include <fstream>
 #include <algorithm>
 #include <iterator>
+#include <search.h>
 
 DataBase::DataBase(std::string type, std::string name) {
 	this->type = type;
@@ -25,7 +26,19 @@ std::vector<User> DataBase::readUsersDb() {
 	{
 		input >> password;
 		input >> status;
-		toReturn.push_back(*new User(login, password, status));
+		std::string bracket;
+		input >> bracket;
+		std::vector<Book> doljen;
+		std::vector<Book> books = readBookDb();
+		while(true)
+		{
+			input >> bracket;
+			if("]" == bracket) break;
+			doljen.push_back(books.at(atoi(bracket.c_str())));
+		}
+		User *thisUser = new User(login, password, status);
+		thisUser->setDoljen(doljen);
+        toReturn.push_back(*thisUser);
 	}
 	return toReturn;
 }
@@ -62,13 +75,18 @@ bool DataBase::writeUserDb(std::vector<User> whatsWrite) {
 	}
 	for (User thisUser : whatsWrite)
 	{
+		std::vector<Book> doljen = thisUser.getDoljen();
 		output << thisUser.getLogin() << " "
-				<< thisUser.getPassword() << " "
-				<< thisUser.getStatus()
-				<< std::endl;
+			<< thisUser.getPassword() << " "
+			<< thisUser.getStatus() << " [ ";
+		for (Book i : doljen)
+		{
+			output << i.getid() << " ";
+		}
+		output << "]\n";
 	}
 	output.close();
-	return 1;
+	return true;
 }
 
 bool DataBase::writeBookDb(std::vector<Book> whatsWrite) {
