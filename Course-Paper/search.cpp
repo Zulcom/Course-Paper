@@ -103,8 +103,8 @@ void search::pullUsers(int type) {
             QTableWidgetItem* thisLogin = new QTableWidgetItem(QString::fromStdString(thisUser.getLogin()));
             std::string idStorage;
             for(Book i : thisUser.getDoljen()){
-                idStorage+= std::to_string(i.getid());
-                idStorage+= " ";
+                idStorage+=std::to_string(i.getid());
+                idStorage+=" ";
             }
             QTableWidgetItem * thisBooks = new QTableWidgetItem(QString::fromStdString(idStorage));
             ui->tableWidget->setItem(lastRow, 0, thisLogin);
