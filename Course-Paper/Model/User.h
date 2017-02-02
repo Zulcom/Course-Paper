@@ -18,8 +18,8 @@ public:
 	std::string getPassword() const;
 	std::string getLogin() const;
 
-	std::vector<Book> doljen1() const { return doljen; }
-	void set_doljen(std::vector<Book> doljen) { this->doljen = doljen; }
+	std::vector<Book> getDoljen() const { return doljen; }
+	void setDoljen(std::vector<Book> doljen) { this->doljen = doljen; }
         static int thisStatus;
 private:
 	std::string login;
@@ -31,6 +31,7 @@ private:
 	* 2 is Reader
 	*/
     int status;
+	// книги, которые должен пользователь
 	std::vector<Book> doljen;
 };
 #endif // USER_H
