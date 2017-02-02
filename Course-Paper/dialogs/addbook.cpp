@@ -32,7 +32,8 @@ void addBook::on_buttonBox_accepted() {
 		                     "Одно из полей не заполнено!");
 		return;
 	}
-	Book* book = new Book(
+	// Поскольку книга новая, её id будет = lastId+1
+	Book* book = new Book(Book::getCounter()+1,
 	                      ui->title->text().toStdString(),
 	                      ui->author->text().toStdString(),
 	                      ui->pagecount->text().toInt(),

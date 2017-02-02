@@ -218,3 +218,4 @@ ModelManifest.xml
 *.opendb
 *.sln
 /Course-Paper/GeneratedFiles
+/lab4

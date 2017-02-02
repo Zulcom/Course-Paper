@@ -38,17 +38,19 @@ std::vector<Book> DataBase::readBookDb() {
 	}
 	std::string title, author, date;
 	std::vector<Book> toReturn;
-	int pagecount, price;
-	while (input >> title)
+    int pagecount, price,id;
+    while (input >> id)
 	{
+        input >> title;
 		input >> author;
 		input >> pagecount;
 		input >> price;
 		input >> date;
 		std::replace(author.begin(), author.end(), '_', ' ');
 		std::replace(title.begin(), title.end(), '_', ' ');
-		toReturn.push_back(*new Book(title, author, pagecount, price, date));
+        toReturn.push_back(*new Book(id,title, author, pagecount, price, date));
 	}
+	Book::setCounter(id);
 	return toReturn;
 }
 
@@ -66,7 +68,7 @@ bool DataBase::writeUserDb(std::vector<User> whatsWrite) {
 				<< std::endl;
 	}
 	output.close();
-	return 1; //TODO: Е Р Е С Ь
+	return 1;
 }
 
 bool DataBase::writeBookDb(std::vector<Book> whatsWrite) {
@@ -86,32 +88,12 @@ bool DataBase::writeBookDb(std::vector<Book> whatsWrite) {
 		std::replace(title.begin(), title.end(), ' ', '_');
 		std::replace(author.begin(), author.end(), ' ', '_');
 		std::replace(date.begin(), date.end(), ' ', '_');
-		output << title << " "
+		output <<thisBook.getid() << " "  << title << " "
 				<< author << " "
 				<< thisBook.getpageCount() << " "
 				<< thisBook.getPrice() << " "
 				<< date << std::endl;
 	}
 	output.close();
-	return 1; // TODO: ЕРЕСЬ
+    return 1;
 }
-//bool DataBase::serialize(std::vector<Book> whatSerialize) {
-//	std::ofstream binOut("book.bin", std::ios::binary);
-//	binOut << whatSerialize.size();
-//	std::copy(whatSerialize.begin(), whatSerialize.end(),
-//		std::ostream_iterator<Book>(binOut, "\n"));
-//	return  true;
-//}
-//std::vector<Book> DataBase::deserialize() {
-//	std::vector<Book> toReturn;
-//	int size;
-//	std::ifstream BinIn("book.bin", std::ios::binary);
-//	BinIn >> size;
-//	std::istream_iterator<Book> file_iter(BinIn);
-//	std::istream_iterator<Book> end_of_stream;
-//	std::copy(file_iter, end_of_stream, std::back_inserter(toReturn));
-//	return toReturn;
-//
-//	
-//}
-
