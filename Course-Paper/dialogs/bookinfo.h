@@ -3,6 +3,8 @@
 
 #include <QDialog>
 #include<QModelIndexList>
+#include <Model/Book.h>
+#include <string>
 
 namespace Ui {
 class bookInfo;
@@ -15,6 +17,7 @@ class bookInfo : public QDialog
 public:
     explicit bookInfo(QWidget *parent = 0);
     ~bookInfo();
+    void setData(Book book,std::string holder);
 
 private:
     Ui::bookInfo *ui;

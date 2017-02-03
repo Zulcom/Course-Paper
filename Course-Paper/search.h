@@ -27,7 +27,7 @@ private slots:
     void selectAll(int row,int col);
     void on_addBook_triggered();
 
-	void on_deleteBook_triggered();
+//	void on_deleteBook_triggered();
 
 	void on_addUser_triggered();
 

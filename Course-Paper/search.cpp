@@ -75,7 +75,6 @@ void search::pullRows() {
 		ui->tableWidget->setItem(lastRow, Book::TITLE, thisTitle);
 		ui->tableWidget->setItem(lastRow, Book::AUTHOR, thisAuthor);
 		ui->tableWidget->setItem(lastRow, Book::PAGESCOUNT, thisCount);
-		ui->tableWidget->setItem(lastRow, Book::PAGESCOUNT, thisCount);
 		ui->tableWidget->setItem(lastRow, Book::PRICE, thisPrice);
 		ui->tableWidget->setItem(lastRow, Book::DATE, thisDate);
 	}
@@ -90,23 +89,17 @@ void search::pullUsers(int type) {
 	}
 	ui->tableWidget->setRowCount(0); // очистка таблицы
 	QStringList titles; // названия стоблцов
-    titles << "Читатель" << "id книг";
+    titles << "Читатель" << "Количество взятых книг";
     ui->tableWidget->setColumnCount(2);
 	ui->tableWidget->setHorizontalHeaderLabels(titles);
-    std::vector<User> SUKA_BLYAD = DataBase::readUsersDb();
-    for (User thisUser : SUKA_BLYAD)
+    for (User thisUser : users)
 	{
 		if (thisUser.getStatus() > 0)
 		{
 			int lastRow = ui->tableWidget->rowCount();
 			ui->tableWidget->insertRow(lastRow);
             QTableWidgetItem* thisLogin = new QTableWidgetItem(QString::fromStdString(thisUser.getLogin()));
-            std::string idStorage;
-            for(Book i : thisUser.getDoljen()){
-                idStorage+=std::to_string(i.getid());
-                idStorage+=" ";
-            }
-            QTableWidgetItem * thisBooks = new QTableWidgetItem(QString::fromStdString(idStorage));
+            QTableWidgetItem * thisBooks = new QTableWidgetItem(QString::fromStdString(std::to_string(thisUser.getDoljen().size())));
             ui->tableWidget->setItem(lastRow, 0, thisLogin);
             ui->tableWidget->setItem(lastRow, 1, thisBooks);
 		}
@@ -117,7 +110,31 @@ void search::displayRowInfo(int row, int col){
      ui->tableWidget->selectRow(row); // при нажатии выделяй всю строку, а не одну ячейку
     bookInfo* bki = new bookInfo(this);
     QModelIndexList selection = ui->tableWidget->selectionModel()->selectedRows();
+    Book thisRowBook = books.at(row+1);
+    int thisRowBookId = thisRowBook.getid();
+    std::string holder = "";
+    bool br = false;
+    for(User i : users){
+        if(br) break;
+        for(Book j : i.getDoljen()){
+            if(j.getid() == thisRowBookId){
+                holder = i.getLogin();
+                br = true;
+                break;
+            }
+        }
+    }
+//    std::vector<Book>::iterator it =
+//            std::find_if(i.getDoljen().begin(),i.getDoljen().end(),
+//                         [thisRowBookId](Book const& n){ return thisRowBookId == n.getid();});
 
+//    if(it != i.getDoljen().end()){
+//        holder = i.getLogin() ;
+//        break;
+//        }
+//    }
+
+    bki->setData(thisRowBook,holder);
 
 
     bki->exec();
@@ -129,7 +146,7 @@ void search::on_addBook_triggered() {
 	adb->exec();
 }
 
-void search::on_deleteBook_triggered() {}
+//void search::on_deleteBook_triggered() {}
 
 void search::on_addUser_triggered() {
 	addUser* ad = new addUser(this);
