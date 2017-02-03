@@ -9,6 +9,7 @@ class User
 {
 public:
 	bool auth();
+        User();
 	User(std::string login, std::string password, int status);
 	User(std::string login, std::string password);
 	static bool addUser(User toAdd);

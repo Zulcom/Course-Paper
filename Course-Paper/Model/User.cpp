@@ -16,6 +16,11 @@ User::User(std::string login, std::string password) {
 	this->password = password;
     this->status = 2;
 }
+User::User(){
+    this->login = "NULL";
+    this->password = "NULL";
+    this->status = 2;
+}
 
 bool User::auth() {
 	DataBase* usersdb = new DataBase("User", "Users");

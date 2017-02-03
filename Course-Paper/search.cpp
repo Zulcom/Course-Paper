@@ -110,7 +110,7 @@ void search::displayRowInfo(int row, int col){
      ui->tableWidget->selectRow(row); // при нажатии выделяй всю строку, а не одну ячейку
     bookInfo* bki = new bookInfo(this);
     QModelIndexList selection = ui->tableWidget->selectionModel()->selectedRows();
-    Book thisRowBook = books.at(row+1);
+    Book thisRowBook = books.at(row);
     int thisRowBookId = thisRowBook.getid();
     std::string holder = "";
     bool br = false;
@@ -124,16 +124,6 @@ void search::displayRowInfo(int row, int col){
             }
         }
     }
-//    std::vector<Book>::iterator it =
-//            std::find_if(i.getDoljen().begin(),i.getDoljen().end(),
-//                         [thisRowBookId](Book const& n){ return thisRowBookId == n.getid();});
-
-//    if(it != i.getDoljen().end()){
-//        holder = i.getLogin() ;
-//        break;
-//        }
-//    }
-
     bki->setData(thisRowBook,holder);
 
 

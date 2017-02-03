@@ -22,6 +22,19 @@ public:
     static bool add(Book book);
 	static void setCounter(int c);
 	static int getCounter();
+
+	void setTitle(const std::string title) { this->title = title; }
+
+	void setAuthor(const std::string author) { this->author = author; }
+
+	void setPageCount(const int pagecount) { this->pagecount = pagecount; }
+
+	void setPrice(const int price) { this->price = price; }
+
+	void setDate(const std::string date) { this->date = date; }
+
+	void setId(const int id) { this->id = id; }
+
     enum // столбцы таблицы
     {
         TITLE,
