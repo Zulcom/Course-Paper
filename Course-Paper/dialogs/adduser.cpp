@@ -3,6 +3,7 @@
 #include "Model/User.h"
 #include <QMessageBox>
 #include <sha256/sha256.h>
+#include <db/db.h>
 
 addUser::addUser(QWidget* parent) :
 	QDialog(parent),
@@ -41,11 +42,7 @@ void addUser::on_addUserButton_clicked() {
 	                      ui->username->text().toStdString(),
 	                      sha256(ui->password->text().toStdString()),
 	                      ui->status->currentIndex());
-	bool res = User::addUser(*user);
-	if (res)
+   DataBase::addUser(*user);
 		QMessageBox::information(this, boxtitile,
-		                         "Пользователь успешно добавлен!");
-	else
-		QMessageBox::warning(this, boxtitile,
-		                     "Пользователь не был добавлен!");
+                                 "Пользователь успешно добавлен!");
 }

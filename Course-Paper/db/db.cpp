@@ -7,14 +7,29 @@
 #include <algorithm>
 #include <iterator>
 #include <search.h>
+int DataBase::BookCounter;
+std::vector<User> DataBase::users;
+std::vector<Book> DataBase::books;
+DataBase::DataBase(){
+      books = DataBase::readBookDb();
+    users = DataBase::readUsersDb();
 
-DataBase::DataBase(std::string type, std::string name) {
-	this->type = type;
-	this->name = name;
+
+}
+void DataBase::saveAll(){
+   writeUserDb(users);
+   writeBookDb(books);
 }
 
+void DataBase::addBook(Book book) {
+    books.push_back(book);
+}
+void DataBase::addUser(User toAdd) {
+    users.push_back(toAdd);
+}
+int DataBase::getCounter() {return  BookCounter;}
 std::vector<User> DataBase::readUsersDb() {
-	std::ifstream input("user.txt");
+	std::ifstream input("user.txt",std::ios::binary);
 	if (!input.is_open())
 	{
 		exit(-2);
@@ -29,12 +44,12 @@ std::vector<User> DataBase::readUsersDb() {
 		std::string bracket;
 		input >> bracket;
 		std::vector<Book> doljen;
-		std::vector<Book> books = readBookDb();
 		while (true)
 		{
 			input >> bracket;
 			if ("]" == bracket) break;
-			doljen.push_back(books.at(atoi(bracket.c_str())));
+            if(atoi(bracket.c_str())> books.size()) continue;
+            doljen.push_back(DataBase::books.at(atoi(bracket.c_str())));
 		}
 		User* thisUser = new User(login, password, status);
 		thisUser->setDoljen(doljen);
@@ -44,7 +59,7 @@ std::vector<User> DataBase::readUsersDb() {
 }
 
 std::vector<Book> DataBase::readBookDb() {
-	std::ifstream input("book.txt");
+	std::ifstream input("book.txt",std::ios::binary);
 	if (!input.is_open())
 	{
 		exit(-2);
@@ -63,12 +78,12 @@ std::vector<Book> DataBase::readBookDb() {
 		std::replace(title.begin(), title.end(), '_', ' ');
 		toReturn.push_back(*new Book(id, title, author, pagecount, price, date));
 	}
-	Book::setCounter(id);
+    BookCounter = id;
 	return toReturn;
 }
 
 bool DataBase::writeUserDb(std::vector<User> whatsWrite) {
-	std::ofstream output("user.txt");
+	std::ofstream output("user.txt",std::ios::binary);
 	if (!output.is_open())
 	{
 		exit(-2);
@@ -90,7 +105,7 @@ bool DataBase::writeUserDb(std::vector<User> whatsWrite) {
 }
 
 bool DataBase::writeBookDb(std::vector<Book> whatsWrite) {
-	std::ofstream output("book.txt");
+	std::ofstream output("book.txt",std::ios::binary);
 	std::string title;
 	std::string author;
 	std::string date;
@@ -114,4 +129,16 @@ bool DataBase::writeBookDb(std::vector<Book> whatsWrite) {
 	}
 	output.close();
 	return 1;
+}
+bool DataBase::removeUser(std::string username) {
+    std::vector<User>::iterator it =
+            std::find_if(DataBase::users.begin(), DataBase::users.end(),
+                         [username](User const& n) { return n.getLogin() == username; });
+    if (it != DataBase::users.end())
+    {
+       DataBase::users.erase(it);
+       return true;
+    }
+    // данный юзер не найден
+    else return false;
 }

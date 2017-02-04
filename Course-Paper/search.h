@@ -17,8 +17,7 @@ class search : public QMainWindow
 
 public:
 	explicit search(QWidget* parent = 0);
-	static std::vector<Book> books;
-	static std::vector<User> users;
+
 	~search();
 private slots:
 	void pullRows(); // заполнение таблицы книг
@@ -26,11 +25,7 @@ private slots:
     void displayRowInfo(int row,int col);
     void selectAll(int row,int col);
     void on_addBook_triggered();
-
-//	void on_deleteBook_triggered();
-
 	void on_addUser_triggered();
-
 	void on_delUser_triggered();
 
 private:

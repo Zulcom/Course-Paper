@@ -12,8 +12,7 @@ public:
 	User();
 	User(std::string login, std::string password, int status);
 	User(std::string login, std::string password);
-	static bool addUser(User toAdd);
-	static bool remove(std::string username);
+
 	int getStatus() const;
 	void setStatus(int status);
 	std::string getPassword() const;
@@ -21,7 +20,7 @@ public:
 
 	std::vector<Book> getDoljen() const { return doljen; }
 	void setDoljen(std::vector<Book> doljen) { this->doljen = doljen; }
-	static int thisStatus;
+        static int thisStatus;
 private:
 	std::string login;
 	std::string password;

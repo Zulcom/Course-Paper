@@ -2,7 +2,7 @@
 #include "ui_bookinfo.h"
 #include <Model/Book.h>
 #include <Model/User.h>
-#include <search.h>
+#include <db/db.h>
 #include <string>
 #include <QMessageBox>
 
@@ -30,13 +30,13 @@ void bookInfo::setData(Book book, std::string holder) {
 	ui->pageCountSub2Label->setText(QString::fromStdString(std::to_string(book.getpageCount())));
 	ui->costEditor->setPlaceholderText(QString::fromStdString(std::to_string(book.getPrice())));
 	std::vector<User>::iterator it =
-			std::find_if(search::users.begin(), search::users.end(),
+            std::find_if(DataBase::users.begin(), DataBase::users.end(),
 			             [holder](User const& n) { return n.getLogin() == holder; });
-	if (it != search::users.end()) this->holder = *it;
+    if (it != DataBase::users.end()) this->holder = *it;
 	if (holder.empty())
 	{
         ui->readerSelector->addItem("Выберите пользователя...");
-		for (User i :search::users) ui->readerSelector->addItem(QString::fromStdString(i.getLogin()));
+        for (User i :DataBase::users) ui->readerSelector->addItem(QString::fromStdString(i.getLogin()));
 		//FIXME:вероятно, выдавать книги можно только читателям
 		ui->returnBookButton->setHidden(true);
 	}
@@ -68,7 +68,7 @@ void bookInfo::on_buttons_rejected() {
 }
 
 void bookInfo::on_buttons_accepted() {
-	Book currentBook = search::books.at(this->bookid);
+    Book currentBook = DataBase::books.at(this->bookid);
 	if (!(ui->titleEditor->text().isEmpty() &&
 		ui->authorEditor->text().isEmpty() &&
 		ui->costEditor->text().isEmpty() &&
@@ -78,7 +78,7 @@ void bookInfo::on_buttons_accepted() {
 		currentBook.setTitle(ui->titleEditor->text().toStdString());
 		currentBook.setAuthor(ui->authorEditor->text().toStdString());
 		currentBook.setPrice(ui->costEditor->text().toInt());
-		for (User i: search::users) if (i.getLogin() == ui->readerSelector->currentText().toStdString()) i.getDoljen().push_back(currentBook);
+        for (User i: DataBase::users) if (i.getLogin() == ui->readerSelector->currentText().toStdString()) i.getDoljen().push_back(currentBook);
 	}
     else QMessageBox::warning(this, "Выдача или редактирование книги", "поля пустые либо читатель не выбран!");
 }

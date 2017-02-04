@@ -25,42 +25,21 @@ User::User() {
 }
 
 bool User::auth() {
-	DataBase* usersdb = new DataBase("User", "Users");
-	std::vector<User> users = usersdb->readUsersDb();
+    DataBase* usersdb = new DataBase();
 	/*
 	 Поиск ползователя в векторе по лямбда-выражению
 	*/
 	std::string thisLogin = login, thisPassword = password;
 	std::vector<User>::iterator it =
-			std::find_if(users.begin(), users.end(),
+            std::find_if(DataBase::users.begin(), DataBase::users.end(),
 			             [thisLogin,thisPassword](User const& n) { return n.login == thisLogin && n.password.compare(sha256(thisPassword)) == 0; });
-	this->thisStatus = (*it).status;
-	return (it != users.end());
+    this->thisStatus = (*it).status;
+    return (it != DataBase::users.end());
 
 }
 
-bool User::addUser(User toAdd) {
-	DataBase* usersdb = new DataBase("User", "Users");
-	std::vector<User> users = usersdb->readUsersDb();
-	users.push_back(toAdd);
-	bool res = usersdb->writeUserDb(users);
-	return res;
-}
 
-bool User::remove(std::string username) {
-	DataBase* usersdb = new DataBase("User", "Users");
-	std::vector<User> users = usersdb->readUsersDb();
-	std::vector<User>::iterator it =
-			std::find_if(users.begin(), users.end(),
-			             [username](User const& n) { return n.login == username; });
-	if (it != users.end())
-	{
-		users.erase(it);
-		return usersdb->writeUserDb(users);
-	}
-	// данный юзер не найден
-	else return false;
-}
+
 
 // Getters & Setters
 std::string User::getPassword() const { return password; }

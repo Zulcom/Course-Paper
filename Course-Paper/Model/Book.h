@@ -19,10 +19,6 @@ public:
 	int getPrice() const;
 	int getid() const;
 	std::string getDate() const;
-	static bool add(Book book);
-	static void setCounter(int c);
-	static int getCounter();
-
 	void setTitle(const std::string title) { this->title = title; }
 
 	void setAuthor(const std::string author) { this->author = author; }
@@ -45,7 +41,6 @@ public:
 	};
 
 private:
-	static int counter;
 	std::string title;
 	std::string author;
 	int pagecount;

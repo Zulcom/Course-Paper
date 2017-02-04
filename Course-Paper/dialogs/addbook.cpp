@@ -2,6 +2,7 @@
 #include "ui_addbook.h"
 #include <QMessageBox>
 #include <Model/Book.h>
+#include <db/db.h>
 
 addBook::addBook(QWidget* parent) :
 	QDialog(parent),
@@ -33,18 +34,13 @@ void addBook::on_buttonBox_accepted() {
 		return;
 	}
 	// Поскольку книга новая, её id будет = lastId+1
-	Book* book = new Book(Book::getCounter()+1,
+    Book* book = new Book(DataBase::getCounter()+1,
 	                      ui->title->text().toStdString(),
 	                      ui->author->text().toStdString(),
 	                      ui->pagecount->text().toInt(),
 	                      ui->price->text().toInt(),
 	                      ui->date->text().toStdString()); // приведение цены из double в int.
-	bool res = Book::add(*book);
-	if (res)
+   DataBase::addBook(*book);
 		QMessageBox::information(this, boxtitle,
 		                         "Книга успешно добавлена!");
-	else
-		QMessageBox::warning(this, boxtitle,
-		                     "Книга не был добавлена!");
-
 }

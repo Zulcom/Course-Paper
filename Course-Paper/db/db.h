@@ -14,16 +14,19 @@ private:
 	 * User is Database contains user data.
 	 * Book is Database contains all staff abouЫt books.
 	 */
-	std::string type;
-	std::string name;
-
+    static int BookCounter;
 public:
-	DataBase(std::string type, std::string name);
+    DataBase();
+    static int getCounter();
+    static void saveAll();
 	static std::vector<User> readUsersDb();
 	static std::vector<Book> readBookDb();
 	static bool writeUserDb(std::vector<User> whatsWrite);
-	static bool writeBookDb(std::vector<Book> whatsWrite);
-	/*static bool serialize(std::vector<Book> whatSerialize);
-	static std::vector<Book> deserialize();*/
+    static bool writeBookDb(std::vector<Book> whatsWrite);
+    static void addUser(User toAdd);
+    static void addBook(Book book);
+    static bool removeUser(std::string username);
+    static std::vector<Book> books;
+    static std::vector<User> users;
 };
 #endif // DB_H

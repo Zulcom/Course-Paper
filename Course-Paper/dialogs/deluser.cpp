@@ -2,7 +2,7 @@
 #include "ui_deluser.h"
 #include <QMessageBox>
 #include <Model/User.h>
-
+#include <db/db.h>
 delUser::delUser(QWidget* parent) :
 	QDialog(parent),
 	ui(new Ui::delUser) {
@@ -24,7 +24,7 @@ void delUser::on_delUserButton_clicked() {
 		QMessageBox::warning(this, boxtitile, "Вы не ввели имя пользователя!");
 		return;
 	}
-	bool res = User::remove(ui->username->text().toStdString());
+    bool res = DataBase::removeUser(ui->username->text().toStdString());
 	if (res) QMessageBox::information(this, boxtitile, "Пользователь успешно удлаён!");
 	else QMessageBox::warning(this, boxtitile, "Пользователь не был удалён!");
 }

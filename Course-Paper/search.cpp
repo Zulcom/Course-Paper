@@ -9,8 +9,7 @@
 #include <dialogs/deluser.h>
 #include <dialogs/addbook.h>
 #include <dialogs/bookinfo.h>
-std::vector<User> search::users = DataBase::readUsersDb();
-std::vector<Book> search::books = DataBase::readBookDb();
+
 
 search::search(QWidget* parent) :
 	QMainWindow(parent),
@@ -24,32 +23,31 @@ search::search(QWidget* parent) :
 	ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers); // запретить редактирование ячеек
 	ui->tableWidget->setColumnCount(5);
 	ui->tableWidget->setHorizontalHeaderLabels(titles); // установка названий столбцов
-	if (User::thisStatus == 2)
+    if (User::thisStatus == 2)
 	{
 		ui->searchType->setVisible(false);
 		ui->addBook->setVisible(false);
 	}
-	if (User::thisStatus > 0)
+    if (User::thisStatus > 0)
 	{
 		ui->delUser->setVisible(false);
 		ui->addUser->setVisible(false);
 	}
-	if (User::thisStatus < 2)
+    if (User::thisStatus < 2)
 	{
 		ui->searchType->addItem("Книги");
 		ui->searchType->addItem("Читатели");
 	};
-	//DataBase::serialize(books);
-	//books = DataBase::deserialize();
 	connect(ui->searchType, SIGNAL(currentIndexChanged(int)), this, SLOT(pullUsers(int)));
 	connect(ui->tableWidget,SIGNAL(cellDoubleClicked(int,int)), this,SLOT(displayRowInfo(int,int)));
 	connect(ui->tableWidget,SIGNAL(cellClicked(int,int)), this,SLOT(selectAll(int,int)));
-	emit pullRows();
+    emit pullRows();
 
 }
 
 search::~search() {
 	delete ui;
+    DataBase::saveAll();
 }
 
 /**
@@ -67,7 +65,7 @@ void search::pullRows() {
 	titles << "Название" << "Автор" << "Число страниц" << "Цена" << "Дата возвращения";
 	ui->tableWidget->setColumnCount(5);
 	ui->tableWidget->setHorizontalHeaderLabels(titles);
-	for (Book thisBook : search::books)
+    for (Book thisBook : DataBase::books)
 	{
 		int lastRow = ui->tableWidget->rowCount();
 		ui->tableWidget->insertRow(lastRow); // добавить строку в конец
@@ -98,7 +96,7 @@ void search::pullUsers(int type) {
 	titles << "Читатель" << "Количество взятых книг";
 	ui->tableWidget->setColumnCount(2);
 	ui->tableWidget->setHorizontalHeaderLabels(titles);
-	for (User thisUser : users)
+    for (User thisUser : DataBase::users)
 	{
 		if (thisUser.getStatus() > 0)
 		{
@@ -116,11 +114,11 @@ void search::displayRowInfo(int row, int col) {
 	ui->tableWidget->selectRow(row); // при нажатии выделяй всю строку, а не одну ячейку
 	bookInfo* bki = new bookInfo(this);
 	QModelIndexList selection = ui->tableWidget->selectionModel()->selectedRows();
-	Book thisRowBook = books.at(row + 1);
+    Book thisRowBook = DataBase::books.at(row + 1);
 	int thisRowBookId = thisRowBook.getid();
 	std::string holder = "";
 	bool br = false;
-	for (User i : users)
+    for (User i : DataBase::users)
 	{
 		if (br) break;
 		for (Book j : i.getDoljen())
@@ -144,15 +142,10 @@ void search::on_addBook_triggered() {
 	addBook* adb = new addBook(this);
 	adb->exec();
 }
-
-//void search::on_deleteBook_triggered() {}
-
 void search::on_addUser_triggered() {
 	addUser* ad = new addUser(this);
 	ad->exec();
 }
-
-
 void search::on_delUser_triggered() {
 	delUser* du = new delUser(this);
 	du->exec();
