@@ -41,9 +41,6 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <widget class="QLineEdit" name="searchBox"/>
-     </item>
-     <item>
       <widget class="QComboBox" name="searchType"/>
      </item>
     </layout>
@@ -93,22 +90,5 @@ QMenubar:item:selected {color:black;}</string>
   </action>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>searchBox</sender>
-   <signal>editingFinished()</signal>
-   <receiver>tableWidget</receiver>
-   <slot>update()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>159</x>
-     <y>47</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>170</x>
-     <y>119</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

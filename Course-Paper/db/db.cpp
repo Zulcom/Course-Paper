@@ -30,15 +30,15 @@ std::vector<User> DataBase::readUsersDb() {
 		input >> bracket;
 		std::vector<Book> doljen;
 		std::vector<Book> books = readBookDb();
-		while(true)
+		while (true)
 		{
 			input >> bracket;
-			if("]" == bracket) break;
+			if ("]" == bracket) break;
 			doljen.push_back(books.at(atoi(bracket.c_str())));
 		}
-		User *thisUser = new User(login, password, status);
+		User* thisUser = new User(login, password, status);
 		thisUser->setDoljen(doljen);
-        toReturn.push_back(*thisUser);
+		toReturn.push_back(*thisUser);
 	}
 	return toReturn;
 }
@@ -51,17 +51,17 @@ std::vector<Book> DataBase::readBookDb() {
 	}
 	std::string title, author, date;
 	std::vector<Book> toReturn;
-    int pagecount, price,id;
-    while (input >> id)
+	int pagecount, price, id;
+	while (input >> id)
 	{
-        input >> title;
+		input >> title;
 		input >> author;
 		input >> pagecount;
 		input >> price;
 		input >> date;
 		std::replace(author.begin(), author.end(), '_', ' ');
 		std::replace(title.begin(), title.end(), '_', ' ');
-        toReturn.push_back(*new Book(id,title, author, pagecount, price, date));
+		toReturn.push_back(*new Book(id, title, author, pagecount, price, date));
 	}
 	Book::setCounter(id);
 	return toReturn;
@@ -77,8 +77,8 @@ bool DataBase::writeUserDb(std::vector<User> whatsWrite) {
 	{
 		std::vector<Book> doljen = thisUser.getDoljen();
 		output << thisUser.getLogin() << " "
-			<< thisUser.getPassword() << " "
-			<< thisUser.getStatus() << " [ ";
+				<< thisUser.getPassword() << " "
+				<< thisUser.getStatus() << " [ ";
 		for (Book i : doljen)
 		{
 			output << i.getid() << " ";
@@ -106,12 +106,12 @@ bool DataBase::writeBookDb(std::vector<Book> whatsWrite) {
 		std::replace(title.begin(), title.end(), ' ', '_');
 		std::replace(author.begin(), author.end(), ' ', '_');
 		std::replace(date.begin(), date.end(), ' ', '_');
-		output <<thisBook.getid() << " "  << title << " "
+		output << thisBook.getid() << " " << title << " "
 				<< author << " "
 				<< thisBook.getpageCount() << " "
 				<< thisBook.getPrice() << " "
 				<< date << std::endl;
 	}
 	output.close();
-    return 1;
+	return 1;
 }

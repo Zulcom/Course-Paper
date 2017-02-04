@@ -5,6 +5,7 @@
 #include "sha256/sha256.h"
 #include <fstream>
 int User::thisStatus = 2;
+
 User::User(std::string login, std::string password, int status) {
 	this->login = login;
 	this->password = password;
@@ -14,12 +15,13 @@ User::User(std::string login, std::string password, int status) {
 User::User(std::string login, std::string password) {
 	this->login = login;
 	this->password = password;
-    this->status = 2;
+	this->status = 2;
 }
-User::User(){
-    this->login = "NULL";
-    this->password = "NULL";
-    this->status = 2;
+
+User::User() {
+	this->login = "NULL";
+	this->password = "NULL";
+	this->status = 2;
 }
 
 bool User::auth() {
@@ -32,10 +34,11 @@ bool User::auth() {
 	std::vector<User>::iterator it =
 			std::find_if(users.begin(), users.end(),
 			             [thisLogin,thisPassword](User const& n) { return n.login == thisLogin && n.password.compare(sha256(thisPassword)) == 0; });
-    this->thisStatus = (*it).status;
-    return (it != users.end());
+	this->thisStatus = (*it).status;
+	return (it != users.end());
 
 }
+
 bool User::addUser(User toAdd) {
 	DataBase* usersdb = new DataBase("User", "Users");
 	std::vector<User> users = usersdb->readUsersDb();

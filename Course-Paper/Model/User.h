@@ -9,7 +9,7 @@ class User
 {
 public:
 	bool auth();
-        User();
+	User();
 	User(std::string login, std::string password, int status);
 	User(std::string login, std::string password);
 	static bool addUser(User toAdd);
@@ -21,7 +21,7 @@ public:
 
 	std::vector<Book> getDoljen() const { return doljen; }
 	void setDoljen(std::vector<Book> doljen) { this->doljen = doljen; }
-        static int thisStatus;
+	static int thisStatus;
 private:
 	std::string login;
 	std::string password;
@@ -31,7 +31,7 @@ private:
 	* 1 is Librian
 	* 2 is Reader
 	*/
-    int status;
+	int status;
 	// книги, которые должен пользователь
 	std::vector<Book> doljen;
 };
