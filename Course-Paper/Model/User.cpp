@@ -25,7 +25,7 @@ User::User() {
 }
 
 bool User::auth() {
-    DataBase* usersdb = new DataBase();
+    DataBase::loadAll();
 	/*
 	 Поиск ползователя в векторе по лямбда-выражению
 	*/

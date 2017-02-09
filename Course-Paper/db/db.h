@@ -19,14 +19,15 @@ public:
     DataBase();
     static int getCounter();
     static void saveAll();
-	static std::vector<User> readUsersDb();
-	static std::vector<Book> readBookDb();
-	static bool writeUserDb(std::vector<User> whatsWrite);
-    static bool writeBookDb(std::vector<Book> whatsWrite);
-    static void addUser(User toAdd);
-    static void addBook(Book book);
+    static std::vector<User> readUsersDb();
+    static std::vector<Book> readBookDb();
+    static bool writeUserDb(std::vector<User>& whatsWrite);
+    static bool writeBookDb(std::vector<Book>& whatsWrite);
+    static void addUser(User* toAdd);
+    static void addBook(Book* book);
     static bool removeUser(std::string username);
     static std::vector<Book> books;
     static std::vector<User> users;
+    static void loadAll();
 };
 #endif // DB_H

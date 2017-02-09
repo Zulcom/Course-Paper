@@ -10,22 +10,22 @@
 int DataBase::BookCounter;
 std::vector<User> DataBase::users;
 std::vector<Book> DataBase::books;
-DataBase::DataBase(){
-      books = DataBase::readBookDb();
+void DataBase::loadAll(){
+    books = DataBase::readBookDb();
     users = DataBase::readUsersDb();
-
-
 }
 void DataBase::saveAll(){
    writeUserDb(users);
    writeBookDb(books);
 }
 
-void DataBase::addBook(Book book) {
-    books.push_back(book);
+void DataBase::addBook(Book * book) {
+    books.push_back(*book);
+    delete book;
 }
-void DataBase::addUser(User toAdd) {
-    users.push_back(toAdd);
+void DataBase::addUser(User * toAdd) {
+    users.push_back(*toAdd);
+    delete toAdd;
 }
 int DataBase::getCounter() {return  BookCounter;}
 std::vector<User> DataBase::readUsersDb() {
@@ -79,10 +79,11 @@ std::vector<Book> DataBase::readBookDb() {
 		toReturn.push_back(*new Book(id, title, author, pagecount, price, date));
 	}
     BookCounter = id;
-	return toReturn;
+
+    return toReturn;
 }
 
-bool DataBase::writeUserDb(std::vector<User> whatsWrite) {
+bool DataBase::writeUserDb(std::vector<User>& whatsWrite) {
 	std::ofstream output("user.txt",std::ios::binary);
 	if (!output.is_open())
 	{
@@ -104,7 +105,7 @@ bool DataBase::writeUserDb(std::vector<User> whatsWrite) {
 	return true;
 }
 
-bool DataBase::writeBookDb(std::vector<Book> whatsWrite) {
+bool DataBase::writeBookDb(std::vector<Book>& whatsWrite) {
 	std::ofstream output("book.txt",std::ios::binary);
 	std::string title;
 	std::string author;
@@ -142,3 +143,4 @@ bool DataBase::removeUser(std::string username) {
     // данный юзер не найден
     else return false;
 }
+DataBase::DataBase(){}

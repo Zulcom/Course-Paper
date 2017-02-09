@@ -42,7 +42,7 @@ void addUser::on_addUserButton_clicked() {
 	                      ui->username->text().toStdString(),
 	                      sha256(ui->password->text().toStdString()),
 	                      ui->status->currentIndex());
-   DataBase::addUser(*user);
+   DataBase::addUser(user);
 		QMessageBox::information(this, boxtitile,
                                  "Пользователь успешно добавлен!");
 }

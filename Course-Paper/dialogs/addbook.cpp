@@ -40,7 +40,7 @@ void addBook::on_buttonBox_accepted() {
 	                      ui->pagecount->text().toInt(),
 	                      ui->price->text().toInt(),
 	                      ui->date->text().toStdString()); // приведение цены из double в int.
-   DataBase::addBook(*book);
+   DataBase::addBook(book);
 		QMessageBox::information(this, boxtitle,
 		                         "Книга успешно добавлена!");
 }

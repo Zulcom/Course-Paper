@@ -24,7 +24,9 @@ void Logon::on_loginButton_clicked() // слот нажатия на кнопк�
     if (!input.is_open())
     {
         QMessageBox::warning(this,"Авторизация","Пользователей не найдено, текуший логин будет добавлен как администратор.");
-         DataBase::addUser(*new User(ui->username->text().toStdString(),sha256(ui->password->text().toStdString()),0));
+        User * temp = new User(ui->username->text().toStdString(),sha256(ui->password->text().toStdString()),0);
+        DataBase::addUser(temp);
+        delete temp;
          search* sh = new search(this);
          emit close(); // закрыть окно логина
          sh->show(); // показать главное окно программы
@@ -41,4 +43,5 @@ void Logon::on_loginButton_clicked() // слот нажатия на кнопк�
 	}
 	else //иначе показать кнопку "забыли пароль?"
         ui->forgotpassword->setVisible(true);
+    delete user;
 }
