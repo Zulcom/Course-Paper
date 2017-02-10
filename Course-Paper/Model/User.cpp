@@ -4,7 +4,6 @@
 #include <algorithm>
 #include "sha256/sha256.h"
 #include <fstream>
-int User::thisStatus = 2;
 
 User::User(std::string login, std::string password, int status) {
 	this->login = login;
@@ -33,7 +32,7 @@ bool User::auth() {
 	std::vector<User>::iterator it =
             std::find_if(DataBase::users.begin(), DataBase::users.end(),
 			             [thisLogin,thisPassword](User const& n) { return n.login == thisLogin && n.password.compare(sha256(thisPassword)) == 0; });
-    this->thisStatus = (*it).status;
+    DataBase::thisUserStatus = (*it).status;
     return (it != DataBase::users.end());
 
 }

@@ -23,17 +23,17 @@ search::search(QWidget* parent) :
 	ui->tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers); // запретить редактирование ячеек
 	ui->tableWidget->setColumnCount(5);
 	ui->tableWidget->setHorizontalHeaderLabels(titles); // установка названий столбцов
-    if (User::thisStatus == 2)
+    if (DataBase::thisUserStatus == 2)
 	{
 		ui->searchType->setVisible(false);
 		ui->addBook->setVisible(false);
 	}
-    if (User::thisStatus > 0)
+    if (DataBase::thisUserStatus > 0)
 	{
 		ui->delUser->setVisible(false);
 		ui->addUser->setVisible(false);
 	}
-    if (User::thisStatus < 2)
+    if (DataBase::thisUserStatus < 2)
 	{
 		ui->searchType->addItem("Книги");
 		ui->searchType->addItem("Читатели");

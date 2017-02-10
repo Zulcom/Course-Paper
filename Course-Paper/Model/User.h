@@ -20,7 +20,6 @@ public:
 
 	std::vector<Book> getDoljen() const { return doljen; }
 	void setDoljen(std::vector<Book> doljen) { this->doljen = doljen; }
-        static int thisStatus;
 private:
 	std::string login;
 	std::string password;

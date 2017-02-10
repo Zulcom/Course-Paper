@@ -17,6 +17,7 @@ private:
     static int BookCounter;
 public:
     DataBase();
+    static int thisUserStatus;
     static int getCounter();
     static void saveAll();
     static std::vector<User> readUsersDb();

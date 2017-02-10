@@ -10,6 +10,7 @@
 int DataBase::BookCounter;
 std::vector<User> DataBase::users;
 std::vector<Book> DataBase::books;
+int DataBase::thisUserStatus;
 void DataBase::loadAll(){
     books = DataBase::readBookDb();
     users = DataBase::readUsersDb();
